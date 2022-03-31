@@ -55,7 +55,9 @@ if (!customElements.get('product-form')) {
           } else {
             this.cartNotification.renderContents(response);
           }
+          return response;
         })
+        .then((response) => CoverGenius.addXCoverWarranty(response))
         .catch((e) => {
           console.error(e);
         })

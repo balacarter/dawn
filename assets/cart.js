@@ -3,8 +3,7 @@ class CartRemoveButton extends HTMLElement {
     super();
     this.addEventListener('click', (event) => {
       event.preventDefault();
-      this.closest('cart-items').updateQuantity(this.dataset.index, 0);
-    });
+      this.closest('cart-items').updateQuantity(this.dataset.index, 0, null, event)    });
   }
 }
 
@@ -55,7 +54,7 @@ class CartItems extends HTMLElement {
     ];
   }
 
-  updateQuantity(line, quantity, name) {
+  updateQuantity(line, quantity, name, event) {
     this.enableLoading(line);
 
     const body = JSON.stringify({
@@ -67,6 +66,7 @@ class CartItems extends HTMLElement {
 
     fetch(`${routes.cart_change_url}`, {...fetchConfig(), ...{ body }})
       .then((response) => {
+        window.CoverGenius.removeCartItem(event);
         return response.text();
       })
       .then((state) => {
