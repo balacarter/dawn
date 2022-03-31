@@ -8,6 +8,33 @@
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
+    <script>
+      window.variantProductId = "{{ product.selected_or_first_available_variant.id }}"
+      window.shouldAjaxAddToCart = true;
+      window.CoverGenius = window.CoverGenius || {};
+      window.CoverGenius.xcoverSelectors = {
+        cartItemDecrementButton: 'button[name="minus"]',
+        cartItemIncrementButton: 'button[name="plus"]',
+        cartItemQuantityInput: 'input.quantity__input',
+        cartItemProductOptionDiv: 'dl .product-option',
+        productFormVariantId: 'form[action="/cart/add"] [name=id]',
+        productForm: 'form[action="/cart/add"]',
+        lineItemCartSelector: 'form#cart',
+        addToCartButton: 'button[name=add]',
+        quantityInput: 'input[name=quantity]',
+        buyNowButton: 'button.shopify-payment-button__button',
+        cartRowElement: 'tr',
+      }
+      if ('{{product.id}}') {
+        window.productId = JSON.parse({{product.id}});
+      }
+      if ('{{product.title}}') {
+        window.productTitle = '{{product.title}}';
+      }
+    </script>
+    {% comment %} next line is only required when running plugin locally {% endcomment %}
+    <script src="https://cc0f-74-101-147-163.ngrok.io/dist/product.js" defer="defer"></script>
+
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
