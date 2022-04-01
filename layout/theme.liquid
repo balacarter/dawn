@@ -32,8 +32,8 @@
         window.productTitle = '{{product.title}}';
       }
     </script>
-    {% comment %} next line is only required when running plugin locally {% endcomment %}
-    <script src="https://cc0f-74-101-147-163.ngrok.io/dist/product.js" defer="defer"></script>
+    {% comment %} next line is only required when running plugin locally <script src="https://cc0f-74-101-147-163.ngrok.io/dist/product.js" defer="defer"></script>{% endcomment %}
+    
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
